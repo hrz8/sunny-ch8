@@ -46,7 +46,6 @@ function FormEdit() {
                                 <td>{player.email}</td>
                                 <td>{player.exp}</td>
                                 <td><button className="btn btn-danger" onClick={() => {
-                                    console.log('button', player.username);
                                     setPlayer({
                                         username: player.username,
                                         email: player.email,
@@ -64,11 +63,22 @@ function FormEdit() {
                 <form action="#" onSubmit={(e) => {
                     e.preventDefault();
 
+                    if (player.email === '' || player.exp === '' || player === 0) {
+                        alert('form cannot be empty');
+                        return;
+                    }
+
                     const theRest = players.filter((ply) => ply.username !== player.username);
                     setPlayers([
                         player,
                         ...theRest,
                     ]);
+
+                    setPlayer({
+                        username: '',
+                        email: '',
+                        exp: 0
+                    });
                 }}>
                     <label htmlFor="usernameUpdate" className="form-label">Username</label>
                     <input id="usernameUpdate" className="form-control" type="text" value={player.username} readOnly />
@@ -80,7 +90,7 @@ function FormEdit() {
                         }
                     })} />
                     <label htmlFor="expUpdate" className="form-label">Experience</label>
-                    <input id="expUpdate" className="form-control" type="number" value={player.exp} onChange={(e) => setPlayer((before) => {
+                    <input min={1} id="expUpdate" className="form-control" type="number" value={player.exp} onChange={(e) => setPlayer((before) => {
                         return {
                             ...before,
                             exp: e.target.value,

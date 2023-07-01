@@ -10,7 +10,7 @@ function FormSearch() {
     // 3. tampilkan data dari state
     // 3a. data dropdown
     // 3b. data form input
-    const [dataDropdown, setDataDropdown] = useState('');
+    const [dataDropdown, setDataDropdown] = useState('username');
     const [dataFormInput, setDataFormInput] = useState('');
 
     const [summary, setSummary] = useState({
@@ -25,6 +25,12 @@ function FormSearch() {
             <div>
                 <form onSubmit={function(event) {
                     event.preventDefault();
+
+                    if (dataDropdown === '' || dataFormInput === '') {
+                        alert('form cannot be empty');
+                        return;
+                    }
+
                     setSummary({
                         criteria: dataDropdown,
                         keyword: dataFormInput,
