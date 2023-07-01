@@ -29,7 +29,7 @@ function FormEdit() {
             <h2>Form Edit Player</h2>
 
             <h3>List Players</h3>
-            <table>
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -45,7 +45,7 @@ function FormEdit() {
                                 <td>{player.username}</td>
                                 <td>{player.email}</td>
                                 <td>{player.exp}</td>
-                                <td><button onClick={() => {
+                                <td><button className="btn btn-danger" onClick={() => {
                                     console.log('button', player.username);
                                     setPlayer({
                                         username: player.username,
@@ -59,6 +59,7 @@ function FormEdit() {
                 </tbody>
             </table>
 
+            <h3>Update Player</h3>
             <div>
                 <form action="#" onSubmit={(e) => {
                     e.preventDefault();
@@ -69,29 +70,25 @@ function FormEdit() {
                         ...theRest,
                     ]);
                 }}>
-                    <label htmlFor="usernameCreate">Username</label>
-                    <input id="usernameCreate" type="text" value={player.username} readOnly />
-                    <br />
-                    <br />
-                    <label htmlFor="emailCreate">Email</label>
-                    <input id="emailCreate" type="email" value={player.email} onChange={(e) => setPlayer((before) => {
+                    <label htmlFor="usernameUpdate" className="form-label">Username</label>
+                    <input id="usernameUpdate" className="form-control" type="text" value={player.username} readOnly />
+                    <label htmlFor="emailUpdate" className="form-label">Email</label>
+                    <input id="emailUpdate" className="form-control" type="email" value={player.email} onChange={(e) => setPlayer((before) => {
                         return {
                             ...before,
                             email: e.target.value,
                         }
                     })} />
-                    <br />
-                    <br />
-                    <label htmlFor="expCreate">Experience</label>
-                    <input id="expCreate" type="number" value={player.exp} onChange={(e) => setPlayer((before) => {
+                    <label htmlFor="expUpdate" className="form-label">Experience</label>
+                    <input id="expUpdate" className="form-control" type="number" value={player.exp} onChange={(e) => setPlayer((before) => {
                         return {
                             ...before,
                             exp: e.target.value,
                         }
                     })} />
-                    <br />
-                    <br />
-                    <button type="submit">Update</button>
+                    <div className="d-grid gap-2 my-3">
+                        <button type="submit" className="btn btn-block btn-danger">Update</button>
+                    </div>
                 </form>
             </div>
         </div>
