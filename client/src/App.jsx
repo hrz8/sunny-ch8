@@ -1,14 +1,13 @@
 import FormCreate from './components/FormCreate';
 import FormEdit from './components/FormEdit';
+import FormSearch from './components/FormSearch';
 
 function App() {
   return (
     <>
       <FormCreate />
       <FormEdit />
-      <div>
-        <h2>Form Search Player</h2>
-      </div>
+      <FormSearch />
     </>
   )
 }
