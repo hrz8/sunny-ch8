@@ -24,6 +24,27 @@ function FormEdit() {
         }
     ]);
 
+    const updatePlayer = (e) => {
+        e.preventDefault();
+
+        if (player.email === '' || player.exp === '' || player === 0) {
+            alert('form cannot be empty');
+            return;
+        }
+
+        const theRest = players.filter((ply) => ply.username !== player.username);
+        setPlayers([
+            player,
+            ...theRest,
+        ]);
+
+        setPlayer({
+            username: '',
+            email: '',
+            exp: 0
+        });
+    }
+
     return (
         <div>
             <h2>Form Edit Player</h2>
@@ -60,26 +81,7 @@ function FormEdit() {
 
             <h3>Update Player</h3>
             <div>
-                <form action="#" onSubmit={(e) => {
-                    e.preventDefault();
-
-                    if (player.email === '' || player.exp === '' || player === 0) {
-                        alert('form cannot be empty');
-                        return;
-                    }
-
-                    const theRest = players.filter((ply) => ply.username !== player.username);
-                    setPlayers([
-                        player,
-                        ...theRest,
-                    ]);
-
-                    setPlayer({
-                        username: '',
-                        email: '',
-                        exp: 0
-                    });
-                }}>
+                <form action="#" onSubmit={updatePlayer}>
                     <label htmlFor="usernameUpdate" className="form-label">Username</label>
                     <input id="usernameUpdate" className="form-control" type="text" value={player.username} readOnly />
                     <label htmlFor="emailUpdate" className="form-label">Email</label>
