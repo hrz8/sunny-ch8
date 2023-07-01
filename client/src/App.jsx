@@ -1,13 +1,24 @@
 import FormCreate from './components/FormCreate';
 import FormEdit from './components/FormEdit';
 import FormSearch from './components/FormSearch';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <>
-      <FormCreate />
-      <FormEdit />
-      <FormSearch />
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-4 col-md-6">
+          <FormCreate />
+        </div>
+        <div className="col-lg-4 col-md-6">
+          <FormEdit />
+        </div>
+        <div className="col-lg-4 col-md-6">
+          <FormSearch />
+        </div>
+      </div>
+    </div>
     </>
   )
 }

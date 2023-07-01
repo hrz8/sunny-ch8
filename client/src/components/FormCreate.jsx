@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function FormCreate() {
     const [username, setUsername] = useState('');
@@ -6,10 +6,6 @@ function FormCreate() {
     const [password, setPassword] = useState('');
     const [exp, setExp] = useState(0);
     const [formData, setFormData] = useState([]);
-
-    useEffect(() => {
-        console.log('effect', formData);
-    }, [formData]);
 
     const createPlayer = (e) => {
         e.preventDefault();
@@ -23,6 +19,10 @@ function FormCreate() {
                 }
             ]
         });
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setExp('');
     }
 
     return (
@@ -30,28 +30,22 @@ function FormCreate() {
             <h2>Form Create Player</h2>
             <div>
                 <form action="#" onSubmit={createPlayer}>
-                    <label htmlFor="usernameCreate">Username</label>
-                    <input id="usernameCreate" type="text" value={username} onChange={(e) => setUsername(() => e.target.value)} />
-                    <br />
-                    <br />
-                    <label htmlFor="emailCreate">Email</label>
-                    <input id="emailCreate" type="email" value={email} onChange={(e) => setEmail(() => e.target.value)} />
-                    <br />
-                    <br />
-                    <label htmlFor="passwordCreate">Password</label>
-                    <input id="passwordCreate" type="password" value={password} onChange={(e) => setPassword(() => e.target.value)}  />
-                    <br />
-                    <br />
-                    <label htmlFor="expCreate">Experience</label>
-                    <input id="expCreate" type="number" value={exp} onChange={(e) => setExp(() => e.target.value)} />
-                    <br />
-                    <br />
-                    <button type="submit">Create</button>
+                    <label htmlFor="usernameCreate" className="form-label">Username</label>
+                    <input id="usernameCreate" className="form-control" type="text" value={username} onChange={(e) => setUsername(() => e.target.value)} />
+                    <label htmlFor="emailCreate" className="form-label">Email</label>
+                    <input id="emailCreate" className="form-control" type="email" value={email} onChange={(e) => setEmail(() => e.target.value)} />
+                    <label htmlFor="passwordCreate" className="form-label">Password</label>
+                    <input id="passwordCreate" className="form-control" type="password" value={password} onChange={(e) => setPassword(() => e.target.value)}  />
+                    <label htmlFor="expCreate" className="form-label">Experience</label>
+                    <input id="expCreate" className="form-control" type="number" value={exp} onChange={(e) => setExp(() => e.target.value)} />
+                    <div className="d-grid gap-2 my-3">
+                        <button type="submit" className="btn btn-block btn-primary">Create</button>
+                    </div>
                 </form>
             </div>
 
             <h3>Summary</h3>
-            <table>
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th>Username</th>
